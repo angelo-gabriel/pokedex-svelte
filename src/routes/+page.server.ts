@@ -6,7 +6,7 @@ type IndexMonster = {
 }
 
 export const load = (async ({ fetch }) => {
-  const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=20')
+  const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
   const json = await response.json()
 
   const monsters = json.results.map((monster: IndexMonster) => {
@@ -15,6 +15,7 @@ export const load = (async ({ fetch }) => {
     return {
       ...monster,
       id,
+      image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`,
     }
   })
   return {
